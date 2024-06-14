@@ -3,7 +3,7 @@ const defaultSetting = require('./src/setting')
 const name = defaultSetting.title;
 module.exports = {
   devServer: {
-      port: '8085',
+      port: '8088',
       open: false,
       proxy: {                                   
           '/api': {

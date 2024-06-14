@@ -129,6 +129,7 @@
   .el-header{
     display: flex;
     align-items: center;
+    background-color: #f5f5f2;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   }
   .apse{
@@ -143,27 +144,33 @@
     padding: 1%;
   }
   .el-menu{
-    background-color: rgb(48, 65, 86);
+    background-color: #c2a383;
 
   }
   .el-submenu span{
     color: #fff;
   }
   .el-menu-item-group{
-    background-color: #1f2d3d;
+    background-color: #d1b599;
 
+  }
+  .el-menu-item i{
+    color: #6d5135;
+  }
+  .el-submenu__title i{
+    color: #6d5135;
   }
   .el-menu-item{
     color: #fff;
     }
     .is-active{
-        color: #409EFF !important;
+        color: #947b61 !important;
     }
   .el-menu-item:focus, .el-menu-item:hover {
-        background-color: #263445 !important;
+        background-color: #a58a6e !important;
    }
    ::v-deep .el-submenu__title:hover{
-        background-color: #263445 !important;
+        background-color: #a58a6e !important;
    }
     
 
