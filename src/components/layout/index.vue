@@ -62,7 +62,7 @@
                             },
                             {
                                 index:'1-2',
-                                router:'/',
+                                router:'/home',
                                 title:'新闻类型'
                             },
                             
@@ -80,17 +80,17 @@
                             },
                             {
                                 index:'2-2',
-                                router:'/',
+                                router:'/home',
                                 title:'草稿箱'
                             },
                             {
                                 index:'2-3',
-                                router:'/',
+                                router:'/home',
                                 title:'新闻审核'
                             },
                             {
                                 index:'2-4',
-                                router:'/',
+                                router:'/home',
                                 title:'新闻分类'
                             },
                             
@@ -134,7 +134,7 @@
             target(index,url){
                 this.defaultActive = index
                 localStorage.setItem('defaultActive',index)
-                if(this.$route.path !== url&&url != undefined && url != null && url != ''){                                                                       
+                if(this.$route.path != url&&url != undefined && url != null && url != ''){                                                                       
                     this.$router.push(url)
                 }                
             }

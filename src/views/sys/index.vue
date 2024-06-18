@@ -1,6 +1,6 @@
 <template>
     <div class="sys">
-        系统设置
+        <el-button>新增</el-button>
     </div>
 </template>
 <script>
