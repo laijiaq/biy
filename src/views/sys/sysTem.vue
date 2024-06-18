@@ -1,13 +1,18 @@
 <template>
-    <div class="login"></div>
+    <div class="system">
+        系统设置
+    </div>
 </template>
 <script>
     export default {
-        data(){
+        data() {
             return {
                 
             }
         },
+        created() {
+            
+        }
     }
 </script>
 <style lang="scss" scoped>
