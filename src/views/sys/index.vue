@@ -4,9 +4,11 @@
         <el-table :data="tableData" border fit style="width: 100%; margin-top: 10px;">
             <el-table-column align="center" type="index" width="100" label="序号">
             </el-table-column>
-            <el-table-column align="center" prop="date" label="行业" >
+            <el-table-column align="center" prop="date" label="行业">
             </el-table-column>
-            <el-table-column align="center" prop="name" label="日期" >
+            <el-table-column align="center" prop="name" label="操作人">
+            </el-table-column>
+            <el-table-column align="center" prop="date" label="日期">
             </el-table-column>
             <el-table-column align="center" label="操作" width="200">
                 <template slot-scope="scope">
@@ -36,23 +38,21 @@
 export default {
     data() {
         return {
-            tableData:[],
-            centerDialogVisible:false,
-            addIndustry:{
-                name:''
+            tableData: [],
+            centerDialogVisible: false,
+            addIndustry: {
+                name: ''
             }
         }
     },
-    methods:{
-        handDelete(){
+    methods: {
+        handDelete() {
 
         },
-        addinfo(){
+        addinfo() {
             this.centerDialogVisible = true
         }
     }
 }
 </script>
-<style>
-    
-</style>
+<style></style>
