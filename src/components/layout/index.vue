@@ -60,12 +60,6 @@
                                 router:'/sys',
                                 title:'基础设置'
                             },
-                            {
-                                index:'1-2',
-                                router:'/home',
-                                title:'新闻类型'
-                            },
-                            
                         ],
                     },
                     {
@@ -80,21 +74,14 @@
                             },
                             {
                                 index:'2-2',
-                                router:'/home',
+                                router:'/draft',
                                 title:'草稿箱'
                             },
                             {
                                 index:'2-3',
-                                router:'/home',
-                                title:'新闻审核'
+                                router:'/News-management',
+                                title:'新闻管理'
                             },
-                            {
-                                index:'2-4',
-                                router:'/home',
-                                title:'新闻分类'
-                            },
-                            
-                            
                         ],
                     },
                     {
@@ -104,10 +91,7 @@
                         children:[
                             {
                                 index:'3-1',
-                                  title:'菜单管理'
-                            },
-                            {
-                                index:'3-2',
+                                router:'/users',
                                   title:'角色管理'
                             },
                         ],

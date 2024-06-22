@@ -5,6 +5,10 @@ import News from "../views/news"
 import Homepage from "../views/home";
 import Sys from "../views/sys/"
 import Layout from "../components/layout";
+import User from "../views/user"
+import NewsManagement from "../views/NewsManagement";
+import Draft from "../views/draft";
+
 
 Vue.use(VueRouter)
 
@@ -14,28 +18,43 @@ const routes = [
     name: 'home',
     component: Layout,
     redirect: '/home',
-    children:[
+    children: [
       {
-        path:'/home',
-        name:'homepage',
-        component:Homepage
+        path: '/home',
+        name: 'homepage',
+        component: Homepage
       },
       {
-        path:'/news',
-        name:'news',
-        component:News
+        path: '/draft',
+        name: 'draft',
+        component: Draft
       },
       {
-        path:'/sys',
-        name:'sys',
-        component:Sys
+        path: '/news',
+        name: 'news',
+        component: News
+      },
+      {
+        path: '/sys',
+        name: 'sys',
+        component: Sys
+      },
+      {
+        path: '/News-management',
+        name: 'news-management',
+        component: NewsManagement
+      },
+      {
+        path: '/users',
+        name: 'users',
+        component: User
       }
     ]
   },
   {
-    path:'/login',
-    name:'login',
-    component:Login
+    path: '/login',
+    name: 'login',
+    component: Login
   },
 ]
 

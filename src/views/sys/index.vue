@@ -4,7 +4,7 @@
         <el-table :data="tableData" border fit style="width: 100%; margin-top: 10px;">
             <el-table-column align="center" type="index" width="100" label="序号">
             </el-table-column>
-            <el-table-column align="center" prop="date" label="行业">
+            <el-table-column align="center" prop="date" label="分类">
             </el-table-column>
             <el-table-column align="center" prop="name" label="操作人">
             </el-table-column>
@@ -20,7 +20,7 @@
 
         <el-dialog title="新增行业分类" :visible.sync="centerDialogVisible" width="40%" center>
 
-            <el-form :label-position="right" label-width="80px" :model="addIndustry">
+            <el-form  label-width="80px" :model="addIndustry">
                 <el-form-item label="行业名称">
                     <el-input v-model="addIndustry.name"></el-input>
                 </el-form-item>

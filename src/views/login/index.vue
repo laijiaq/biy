@@ -21,7 +21,7 @@
                                 show-password prefix-icon="el-icon-lock"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="submitForm()">提交</el-button>
+                            <el-button class="button" type="primary" @click="submitForm()">提交</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -134,6 +134,7 @@ export default {
                     font-weight: 900;
                     text-align: right;
                     color: #1080b7;
+                    height: 145px;
                 }
             }
         }
@@ -155,26 +156,7 @@ export default {
     }
 }
 
-// .login{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     // background-color: #e8d26b;
-//     background-color:rgba(220, 254, 255, 0.3);
-//     .login-box{
-//         width: 90%;
-//         height: 75%;
-//         box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
-//         .login-left{
-//             width: 35%;
-//             height: 100%;
-//         }
-//         .login-main{
-//             width: 65%;
-//             height: 100%;
-//         }
-//     }
-// }
+.button{
+    width: 100%;
+}
 </style>
