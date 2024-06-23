@@ -7,7 +7,11 @@
             <div class="login-main">
                 <div class="main_header">
                     <div class="icon"></div>
-                    <div class="text">欢迎回来!</div>
+                    <div class="text">
+                        <p> 欢迎回来!</p>
+                        <p>Welcome Back</p>
+                    </div>
+
                 </div>
                 <div class="login-form">
                     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px"
@@ -73,15 +77,15 @@ export default {
     methods: {
 
         submitForm() {
-            if (/^[a-zA-Z0-9-_]{4,16}$/.test(this.ruleForm.userName) && /^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
+            if (/^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
                 this.$router.push({
                     path: '/home'
                 });
             } else {
                 this.$message.error({
-                    message: '用户名或密码格式不正确',
+                    message: '密码格式不正确',
                     center: true,
-                    duration:2000
+                    duration: 2000
                 });
             }
 
@@ -125,17 +129,36 @@ export default {
                 .icon {
                     width: 145px;
                     height: 145px;
-                    background-color: rgb(21, 19, 19);
+                    background-image: url('../../assets/images/min-logo.png');
+                    /* 背景图片路径 */
+                    background-size: cover;
+                    /* 背景图片覆盖整个容器 */
+                    background-position: center;
+                    /* 背景图片居中 */
+                    background-repeat: no-repeat;
                 }
 
                 .text {
                     flex: 1;
+                    height: 145px;
+
+                }
+
+                .text p:nth-child(1) {
+
                     font-size: 30px;
                     font-weight: 900;
                     text-align: right;
                     color: #1080b7;
-                    height: 145px;
                 }
+
+                .text p:nth-child(2) {
+                    font-size: 14px;
+                    text-align: right;
+                    color: #4f5152;
+                    padding-right: 20px;
+                }
+
             }
         }
 
@@ -156,7 +179,6 @@ export default {
     }
 }
 
-.button{
+.button {
     width: 100%;
-}
-</style>
+}</style>
