@@ -73,12 +73,6 @@ export default {
     methods: {
 
         submitForm() {
-<<<<<<< HEAD
-            if (/^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
-                this.$router.push({
-                    path: '/home'
-                });
-=======
             if ( /^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
                 // login({
                 // username: this.ruleForm.userName,
@@ -122,7 +116,6 @@ export default {
                 //     // 在这里可以处理 PHP 返回的响应数据，比如登录成功跳转等
                 // })
 
->>>>>>> 5297695b295e41f99d71b635a4de33e5caa221cc
             } else {
                 this.$message.error({
                     message: '密码格式不正确',
