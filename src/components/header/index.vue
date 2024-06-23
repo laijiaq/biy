@@ -30,7 +30,7 @@
         },
         created(){
             this.loginname = localStorage.getItem('loginName')
-            console.log("loginName",this.loginname);
+            // console.log("loginName",this.loginname);
             if(this.loginname == null){
                 this.loginname = "请先登录"
             }

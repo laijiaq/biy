@@ -35,16 +35,15 @@
     </div>
 </template>
 <script>
+import { login } from '../../assets/api/login.js'
+import axios from 'axios';
 export default {
     data() {
-        var nameRg = /^[a-zA-Z0-9-_]{4,16}$/
         var passRg = /^[a-zA-Z0-9-_]{6,16}$/
         var validateName = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('用户名不能为空'));
-            } else if (!nameRg.test(value)) {
-                callback(new Error('用户名格式不正确，输入4-16位字符'));
-            } else {
+            }else {
                 callback()
             }
         };
@@ -64,9 +63,6 @@ export default {
                 userPass: '',
             },
             rules: {
-                userName: [
-                    { validator: validateName, trigger: 'blur' }
-                ],
                 userPass: [
                     { validator: validatePass, trigger: 'blur' }
                 ],
@@ -77,10 +73,56 @@ export default {
     methods: {
 
         submitForm() {
+<<<<<<< HEAD
             if (/^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
                 this.$router.push({
                     path: '/home'
                 });
+=======
+            if ( /^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
+                // login({
+                // username: this.ruleForm.userName,
+                // password: this.ruleForm.userPass
+                // })
+                // .then(res => {
+                //     // 登录成功处理逻辑
+                //     this.$router.push({ path: '/home' });
+                // })
+                // .catch(error => {
+                //     // 捕获并处理请求失败的情况
+                //     console.error('Login failed:', error);
+                //     // 在界面上显示错误信息或者做其他适当的处理
+                // });
+                console.log(' process.env.VUE_APP_BASE_API', process.env.VUE_APP_BASE_API);
+                const formData = new FormData();
+                formData.append('username', this.ruleForm.userName);
+                formData.append('password', this.ruleForm.userPass);
+                login({
+                    username: this.ruleForm.userName,
+                    password: this.ruleForm.userPass
+                }).then(res=>{
+                    if(res.data.status == 1){
+                        this.$message({
+                            message: '登陆成功',
+                            type: 'success',
+                            duration:'1000'
+                        });
+                        console.log(res.data);
+                        localStorage.setItem('loginName',res.data.user.username)
+                        this.$router.push({ path: '/home' });
+                    }
+                }).catch(error=>{
+
+                })
+                // axios.post('/php/index.php', formData)
+                // .then(response => {
+                //     // 请求成功处理逻辑
+                //     console.log('Response from PHP:', response.data);
+                //     this.$router.push({ path: '/home' });
+                //     // 在这里可以处理 PHP 返回的响应数据，比如登录成功跳转等
+                // })
+
+>>>>>>> 5297695b295e41f99d71b635a4de33e5caa221cc
             } else {
                 this.$message.error({
                     message: '密码格式不正确',
@@ -89,7 +131,7 @@ export default {
                 });
             }
 
-        }
+        },
     }
 }
 </script>
