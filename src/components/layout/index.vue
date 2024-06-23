@@ -92,7 +92,7 @@
                             {
                                 index:'3-1',
                                 router:'/users',
-                                  title:'角色管理'
+                                  title:'用户管理'
                             },
                         ],
                     },

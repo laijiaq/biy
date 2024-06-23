@@ -64,4 +64,23 @@ const router = new VueRouter({
   routes
 })
 
+// 全局前置守卫
+// router.beforeEach((to, from, next) => {
+  // 这里是检查逻辑
+  // to: 即将要进入的目标路由对象
+  // from: 当前导航正要离开的路由
+  // next: 一定要调用该方法来 resolve 这个钩子
+
+  // 假设你有一个全局状态管理 store，你可以在这里检查用户是否登录
+  // 如果用户未登录，并且即将访问的路由需要认证，则重定向到登录页面
+  // const isAuthenticated = this.$store.state.loginSdate;
+  // const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  // if (to.path =='/login') {
+  //   next();
+  // } else {
+  //   if()
+  // }
+  // console.log(to.path);
+// });
 export default router

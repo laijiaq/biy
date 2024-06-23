@@ -36,7 +36,6 @@
 </template>
 <script>
 import { login } from '../../assets/api/login.js'
-import axios from 'axios';
 export default {
     data() {
         var passRg = /^[a-zA-Z0-9-_]{6,16}$/
@@ -96,6 +95,7 @@ export default {
                     password: this.ruleForm.userPass
                 }).then(res=>{
                     if(res.data.status == 1){
+                        
                         this.$message({
                             message: '登陆成功',
                             type: 'success',
@@ -103,6 +103,7 @@ export default {
                         });
                         console.log(res.data);
                         localStorage.setItem('loginName',res.data.user.username)
+                        localStorage.setItem('user',JSON.stringify(res.data.user) )
                         this.$router.push({ path: '/home' });
                     }
                 }).catch(error=>{

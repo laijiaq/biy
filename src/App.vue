@@ -12,17 +12,8 @@ export default {
     }
   },
   created() {
-    if(this.$store.state.loginSdate){
-      this.$router.push({
-        path: '/home'
-      })
-    }else{
-      this.$router.push({
-        path: '/login'
-      })
-    }
-      
-    }
+    console.log( this.$store.state.loginSdate);
+  }
 }
 </script>
 

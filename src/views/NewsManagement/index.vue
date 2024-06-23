@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <div class="searc-BOx">
+      <el-input placeholder="请输入内容" v-model="search" >
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </div>
     <el-table :data="newsData" border stripe style="width: 100%" empty-text>
       <el-table-column prop="ID" label="ID" width="50" align="center">
       </el-table-column>
@@ -25,8 +30,9 @@
 export default {
   data() {
     return {
+      search:'',
       newsData: [
-      {
+        {
           date: '2016-05-02',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
@@ -63,4 +69,8 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.searc-BOx{
+  width: 250px;
+}
+</style>
