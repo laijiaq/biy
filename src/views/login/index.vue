@@ -70,19 +70,6 @@ export default {
 
         submitForm() {
             if ( /^[a-zA-Z0-9-_]{6,16}$/.test(this.ruleForm.userPass)) {
-                // login({
-                // username: this.ruleForm.userName,
-                // password: this.ruleForm.userPass
-                // })
-                // .then(res => {
-                //     // 登录成功处理逻辑
-                //     this.$router.push({ path: '/home' });
-                // })
-                // .catch(error => {
-                //     // 捕获并处理请求失败的情况
-                //     console.error('Login failed:', error);
-                //     // 在界面上显示错误信息或者做其他适当的处理
-                // });
                 console.log(' process.env.VUE_APP_BASE_API', process.env.VUE_APP_BASE_API);
                 const formData = new FormData();
                 formData.append('username', this.ruleForm.userName);
@@ -104,13 +91,6 @@ export default {
                 }).catch(error=>{
 
                 })
-                // axios.post('/php/index.php', formData)
-                // .then(response => {
-                //     // 请求成功处理逻辑
-                //     console.log('Response from PHP:', response.data);
-                //     this.$router.push({ path: '/home' });
-                //     // 在这里可以处理 PHP 返回的响应数据，比如登录成功跳转等
-                // })
 
             } else {
                 this.$message.error({
