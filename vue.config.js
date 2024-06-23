@@ -12,6 +12,13 @@ module.exports = {
               pathRewrite: {
                   '^/api': ''
               }
+          },
+          '/php/index.php':{
+            target: process.env.VUE_APP_BASE_API,
+            changeOrigin: true,
+            pathRewrite:{
+              '^/php/index.php':''
+            }
           }
       }
   },
@@ -21,4 +28,5 @@ module.exports = {
         name: name,
 
     },
+
 }

@@ -37,7 +37,7 @@
         },
         methods:{
             logout(){
-
+                this.$router.push('/login')
             },
             login(){
 
