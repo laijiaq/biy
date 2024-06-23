@@ -7,7 +7,11 @@
             <div class="login-main">
                 <div class="main_header">
                     <div class="icon"></div>
-                    <div class="text">欢迎回来!</div>
+                    <div class="text">
+                        <p> 欢迎回来!</p>
+                        <p>Welcome Back</p>
+                    </div>
+
                 </div>
                 <div class="login-form">
                     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px"
@@ -32,7 +36,6 @@
 </template>
 <script>
 import { login } from '../../assets/api/login.js'
-import axios from 'axios';
 export default {
     data() {
         var passRg = /^[a-zA-Z0-9-_]{6,16}$/
@@ -79,6 +82,7 @@ export default {
                     password: this.ruleForm.userPass
                 }).then(res=>{
                     if(res.data.status == 1){
+                        
                         this.$message({
                             message: '登陆成功',
                             type: 'success',
@@ -86,6 +90,7 @@ export default {
                         });
                         console.log(res.data);
                         localStorage.setItem('loginName',res.data.user.username)
+                        localStorage.setItem('user',JSON.stringify(res.data.user) )
                         this.$router.push({ path: '/home' });
                     }
                 }).catch(error=>{
@@ -94,9 +99,9 @@ export default {
 
             } else {
                 this.$message.error({
-                    message: '用户名或密码格式不正确',
+                    message: '密码格式不正确',
                     center: true,
-                    duration:2000
+                    duration: 2000
                 });
             }
 
@@ -140,17 +145,36 @@ export default {
                 .icon {
                     width: 145px;
                     height: 145px;
-                    background-color: rgb(21, 19, 19);
+                    background-image: url('../../assets/images/min-logo.png');
+                    /* 背景图片路径 */
+                    background-size: cover;
+                    /* 背景图片覆盖整个容器 */
+                    background-position: center;
+                    /* 背景图片居中 */
+                    background-repeat: no-repeat;
                 }
 
                 .text {
                     flex: 1;
+                    height: 145px;
+
+                }
+
+                .text p:nth-child(1) {
+
                     font-size: 30px;
                     font-weight: 900;
                     text-align: right;
                     color: #1080b7;
-                    height: 145px;
                 }
+
+                .text p:nth-child(2) {
+                    font-size: 14px;
+                    text-align: right;
+                    color: #4f5152;
+                    padding-right: 20px;
+                }
+
             }
         }
 
@@ -171,7 +195,6 @@ export default {
     }
 }
 
-.button{
+.button {
     width: 100%;
-}
-</style>
+}</style>
