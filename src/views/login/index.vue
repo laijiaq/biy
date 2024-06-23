@@ -97,6 +97,8 @@ export default {
                             type: 'success',
                             duration:'1000'
                         });
+                        console.log(res.data);
+                        localStorage.setItem('loginName',res.data.user.username)
                         this.$router.push({ path: '/home' });
                     }
                 }).catch(error=>{
