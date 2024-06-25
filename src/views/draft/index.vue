@@ -1,19 +1,18 @@
 <template>
   <div id="app">
     <el-table :data="draftData" border stripe style="width: 100%" empty-text>
-      <el-table-column prop="ID" label="ID" width="50" align="center">
+      <el-table-column prop="id" label="ID" width="50" align="center">
       </el-table-column>
-      <el-table-column prop="number" label="发布人" width="180" align="center">
+      <!-- <el-table-column prop="newsData.column_name=='栏目查询准备失败'?'':column_name" label="分类" width="150" align="center">
+      </el-table-column> -->
+      <el-table-column prop="title" label="主标题" width="180" align="center">
       </el-table-column>
-      <el-table-column prop="title" label="标题" width="180" align="center">
+      <el-table-column prop="sc_title" label="副标题" width="180" align="center">
       </el-table-column>
-      <el-table-column prop="time" label="新闻内容" align="center">
-      </el-table-column>
-      <el-table-column prop="role" label="发布时间" width="180" align="center">
+      <el-table-column prop="content" label="内容" align="center">
       </el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleEdit(scope.$index, scope.row)">上线</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -22,47 +21,56 @@
 </template>
 
 <script>
+import { searchNews, delNews } from "../../assets/api/login";
+
 export default {
   data() {
     return {
       draftData: [
-      {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
       ]
     }
   },
 
-  created() { },
+  created() {
+    this.getList()
+  },
 
-  mounted() { },
+  mounted() {
 
-  methods : { 
-    handleEdit(scope, row) {
-      console.log('编辑');
+  },
+
+  methods: {
+    getList() {
+      const count = 2
+      const userId = JSON.parse(localStorage.getItem('user')).id
+      // console.log(userId);
+      searchNews({
+        userid: userId,
+        count: count
+      }).then(res => {
+        this.draftData = res.data.data;
+        console.log(res);
+      })
     },
     handleDelete(scope, row) {
-      console.log('删除');
+      delNews({
+        id: row.id,
+        count: 2
+      }).then(res => {
+        console.log(res.data);
+        if (res.data.status == 1) {
+          this.$message.success({
+            message: '删除成功',
+            center: true,
+            duration: 1000
+          })
+          this.getList()
+        }
+      })
     }
   }
 }
 </script>
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

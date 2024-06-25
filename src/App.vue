@@ -12,7 +12,11 @@ export default {
     }
   },
   created() {
-    console.log( this.$store.state.loginSdate);
+    const user = localStorage.getItem('user');
+    console.log(user);
+    if (!user) {
+      this.$router.push('/login');
+    }
   }
 }
 </script>
