@@ -64,6 +64,23 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  // 检查本地存储中是否有用户信息
+  const user = localStorage.getItem('user');
+  
+  // 如果访问的是登录页，无需检查，直接放行
+  if (to.path === '/login') {
+    next();
+  } else {
+    // 如果本地存储中没有用户信息，则跳转到登录页
+    if (!user) {
+      next('/login');
+    } else {
+      // 否则放行，跳转到目标页面
+      next();
+    }
+  }
+});
 // 全局前置守卫
 // router.beforeEach((to, from, next) => {
   // 这里是检查逻辑
