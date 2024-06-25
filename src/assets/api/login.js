@@ -22,3 +22,26 @@ export const upColum = (data) => {
 export const delColum = (data) => {
   return post('php/delcolum.php', data);
 };
+
+// 添加新闻
+export const addNews = (data) => {
+  return post('php/addcontent.php', data);
+};
+
+// 查询新闻列表
+
+export const searchNews = (data) => {
+  return post('php/getcontent.php', data);
+};
+
+// 修改新闻
+
+export const upNews = (data) => {
+  return post('php/undatecontent.php', data);
+};
+
+// 删除新闻
+
+export const delNews = (data) => {
+  return post('php/delcontent.php', data);
+};
