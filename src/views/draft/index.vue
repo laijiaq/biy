@@ -3,8 +3,8 @@
     <el-table :data="draftData" border stripe style="width: 100%" empty-text>
       <el-table-column prop="id" label="ID" width="50" align="center">
       </el-table-column>
-      <el-table-column prop="newsData.column_name=='栏目查询准备失败'?'':column_name" label="分类" width="150" align="center">
-      </el-table-column>
+      <!-- <el-table-column prop="newsData.column_name=='栏目查询准备失败'?'':column_name" label="分类" width="150" align="center">
+      </el-table-column> -->
       <el-table-column prop="title" label="主标题" width="180" align="center">
       </el-table-column>
       <el-table-column prop="sc_title" label="副标题" width="180" align="center">

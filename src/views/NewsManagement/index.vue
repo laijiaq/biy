@@ -5,16 +5,19 @@
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </div>
-    <el-table :data="newsData" border stripe style="width: 100%" empty-text>
+    <el-table :data="newsData" border stripe style="width: 100%"  >
       <el-table-column prop="id" label="ID" width="50" align="center">
       </el-table-column>
-      <el-table-column prop="newsData.column_name=='栏目查询准备失败'?'':column_name" label="分类" width="150" align="center">
-      </el-table-column>
+      <!-- <el-table-column prop="newsData.column_name=='栏目查询准备失败'?'':column_name" label="分类" width="150" align="center">
+      </el-table-column> -->
       <el-table-column prop="title" label="主标题" width="180" align="center">
       </el-table-column>
       <el-table-column prop="sc_title" label="副标题" width="180" align="center">
       </el-table-column>
-      <el-table-column prop="content" label="内容" align="center">
+      <el-table-column    label="内容" align="center">
+        <template slot-scope="scope">
+          <div v-html="scope.row.content"></div>
+        </template>
       </el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template slot-scope="scope">

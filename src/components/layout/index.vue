@@ -132,6 +132,7 @@
 
     .layout{
         height: 92%;
+
     }
     .el-container{
         height: 100%;
@@ -158,6 +159,7 @@
   .content{
     height: 100%;
     padding: 1%;
+    overflow: auto;
   }
   .el-menu{
     background-color: #c2a383;
