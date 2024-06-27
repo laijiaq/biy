@@ -37,6 +37,8 @@
         },
         methods:{
             logout(){
+                localStorage.removeItem('user')
+                localStorage.removeItem('loginName')
                 this.$router.push('/login')
             },
             login(){

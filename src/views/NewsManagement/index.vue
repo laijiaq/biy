@@ -47,7 +47,7 @@
           </el-form-item>
           <el-form-item label="选择栏目">
             <el-select v-model="formData.column_id" placeholder="请选择栏目">
-              <el-option v-for="item in Ldata" :label="item.column" :value="item.id"></el-option>
+              <el-option v-for="(item,index) in Ldata" :label="item.column" :value="item.id" :key="'item'+index"></el-option>
             </el-select>
           </el-form-item>
         </el-form>

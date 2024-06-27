@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://192.168.31.126:86'; 
+axios.defaults.baseURL = 'http://yuncheap.icu'; 
 import Qs from 'qs';
 
 export const post = (url, data) => {
@@ -13,3 +13,23 @@ export const post = (url, data) => {
     }
   });
 };
+
+function checkDatabaseConnection() {
+  axios.post('php/database.php')
+      .then(function (response) {
+          // 请求成功处理
+          if (response.data.status === 'success') {
+              console.log(response.data.message); // 显示成功消息
+          } else {
+            console.log(response.data.message); // 显示连接失败消息
+          }
+      })
+      .catch(function (error) {
+          // 请求失败处理
+          console.error('Error connecting to database:', error);
+          alert('Error connecting to database. Please try again later.');
+      });
+}
+
+// 调用发送请求的函数
+checkDatabaseConnection();
