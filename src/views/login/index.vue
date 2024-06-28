@@ -2,11 +2,16 @@
     <div class="login">
         <div class="login-box">
             <div class="login-left">
-                <header>后台管理系统</header>
+
+                <img src="../../assets/images/min-logo.png" alt="">
+                <header>
+                    后台管理系统
+                </header>
+
             </div>
             <div class="login-main">
                 <div class="main_header">
-                    <div class="icon"></div>
+
                     <div class="text">
                         <p> 欢迎回来!</p>
                         <p>Welcome Back</p>
@@ -113,23 +118,39 @@ export default {
 .login {
     width: 100%;
     height: 100%;
-    background-color: #ccc;
+    background-image: url('../../assets/images/new_index.jpg');
+    background-size: cover;
+    background-repeat:no-repeat ;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    // filter: blur(5px);
 
     .login-box {
         width: 60%;
         height: 70%;
         max-width: 1048px;
+        min-width: 800px;
         max-height: 642px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
         display: flex;
+        background-color: #fff;
         align-items: center;
         border-radius: 20px;
         overflow: hidden;
 
-        .login-left,
+        .login-left{
+            align-self: stretch;
+            flex: 1;
+            padding: 40px 20px;
+            min-width: 317px;
+            img{
+                margin-bottom: 20px;
+                width: 70%;
+                object-fit: contain;
+            }
+        }
         .login-main {
             align-self: stretch;
             flex: 1;
@@ -142,17 +163,7 @@ export default {
                 align-items: center;
                 padding: 10px 0;
 
-                .icon {
-                    width: 145px;
-                    height: 145px;
-                    background-image: url('../../assets/images/min-logo.png');
-                    /* 背景图片路径 */
-                    background-size: cover;
-                    /* 背景图片覆盖整个容器 */
-                    background-position: center;
-                    /* 背景图片居中 */
-                    background-repeat: no-repeat;
-                }
+
 
                 .text {
                     flex: 1;
@@ -164,15 +175,17 @@ export default {
 
                     font-size: 30px;
                     font-weight: 900;
-                    text-align: right;
+                    text-align: center;
                     color: #1080b7;
+                    letter-spacing: 10px;
                 }
 
                 .text p:nth-child(2) {
                     font-size: 14px;
-                    text-align: right;
+                    text-align: center;
                     color: #4f5152;
                     padding-right: 20px;
+                    letter-spacing: 5px;
                 }
 
             }
@@ -183,7 +196,7 @@ export default {
             padding: 5% 2%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
 
             header {
