@@ -1,6 +1,7 @@
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://yuncheap.icu'; 
+// axios.defaults.baseURL = 'http://yuncheap.icu'; 
+axios.defaults.baseURL = 'http://zhanglin:8080/'; 
 import Qs from 'qs';
 
 export const post = (url, data) => {

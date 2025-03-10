@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="left">
-            <img src="../../assets/images/logo.jpg" alt="">
+            <img src="../../assets/images/logo.png" alt="">
             <span class="title">后台管理系统</span>
         </div>
         <div class="right">
@@ -11,7 +11,7 @@
                 </span>
                 <el-dropdown-menu slot="dropdown" class="user-dropdown">
                     <router-link to="/" >
-                        <el-dropdown-item style="margin-right: 5px;">个人中心</el-dropdown-item>
+                        <el-dropdown-item style="margin-right: 5px;" @click.native="target_main()">返回首页</el-dropdown-item>
                     </router-link>
                     <el-dropdown-item divided @click.native="logout">
                         <span style="display: block">退出登录</span>
@@ -22,6 +22,7 @@
     </div>
 </template>
 <script>
+    
     export default {
         data(){
             return {
@@ -42,6 +43,13 @@
                 this.$router.push('/login')
             },
             login(){
+
+            },
+            target_main(){
+                const user = JSON.parse(localStorage.getItem('user'))
+                user.activeIndex = '2-1'
+                localStorage.setItem('user', JSON.stringify(user))
+                window.location.href = "http://192.168.1.6:8081/";
 
             }
         }
@@ -79,13 +87,13 @@
     display: flex;
     align-items: center;
     img{
-        width: 27%;
-        height: 80%;
+        width: 20%;
+        // height: 80%;
     }
     .title{
         margin-left: 20px;
         font-size: 30px;
-        color: #644b34;
+        color: #617794;
         font-weight: 900;
 
     }

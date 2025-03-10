@@ -8,6 +8,8 @@ import Layout from "../components/layout";
 import User from "../views/user"
 import NewsManagement from "../views/NewsManagement";
 import Draft from "../views/draft";
+import review from "../views/review";
+import reviewPhoto from "../views/reviewPhoto";
 
 
 Vue.use(VueRouter)
@@ -43,6 +45,16 @@ const routes = [
         path: '/News-management',
         name: 'news-management',
         component: NewsManagement
+      },
+      {
+        path: '/review',
+        name: 'review',
+        component: review
+      },
+      {
+        path: '/reviewPhoto',
+        name: 'reviewPhoto',
+        component: reviewPhoto
       },
       {
         path: '/users',

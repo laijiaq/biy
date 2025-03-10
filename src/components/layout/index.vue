@@ -64,23 +64,33 @@
                     },
                     {
                         index:"3",
-                        title:'新闻中心',
+                        title:'审核中心',
                         icon:'el-icon-message',
                         children:[
+                            // {
+                            //     index:'2-1',
+                            //     router:'/news',
+                            //     title:'撰写新闻'
+                            // },
+                            // {
+                            //     index:'2-2',
+                            //     router:'/draft',
+                            //     title:'草稿箱'
+                            // },
+                            // {
+                            //     index:'2-3',
+                            //     router:'/News-management',
+                            //     title:'新闻管理'
+                            // },
                             {
                                 index:'2-1',
-                                router:'/news',
-                                title:'撰写新闻'
+                                router:'/review',
+                                title:'比赛审核'
                             },
                             {
                                 index:'2-2',
-                                router:'/draft',
-                                title:'草稿箱'
-                            },
-                            {
-                                index:'2-3',
-                                router:'/News-management',
-                                title:'新闻管理'
+                                router:'/reviewPhoto',
+                                title:'图片审核'
                             },
                         ],
                     },
@@ -162,33 +172,33 @@
     overflow: auto;
   }
   .el-menu{
-    background-color: #c2a383;
+    background-color: #83a0c2;
 
   }
   .el-submenu span{
     color: #fff;
   }
   .el-menu-item-group{
-    background-color: #d1b599;
+    background-color: #99bbd1;
 
   }
   .el-menu-item i{
-    color: #6d5135;
+    color: #353b6d;
   }
   .el-submenu__title i{
-    color: #6d5135;
+    color: #353b6d;
   }
   .el-menu-item{
     color: #fff;
     }
     .is-active{
-        color: #947b61 !important;
+        color: #617794 !important;
     }
   .el-menu-item:focus, .el-menu-item:hover {
-        background-color: #a58a6e !important;
+        background-color: #6e95a5 !important;
    }
    ::v-deep .el-submenu__title:hover{
-        background-color: #a58a6e !important;
+        background-color: #6e95a5 !important;
    }
     
 
