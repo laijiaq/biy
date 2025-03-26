@@ -10,6 +10,7 @@ import NewsManagement from "../views/NewsManagement";
 import Draft from "../views/draft";
 import review from "../views/review";
 import reviewPhoto from "../views/reviewPhoto";
+import contentreview from "../views/contentreview";
 
 
 Vue.use(VueRouter)
@@ -57,10 +58,15 @@ const routes = [
         component: reviewPhoto
       },
       {
+        path: '/contentreview',
+        name: 'contentreview',
+        component: contentreview
+      },
+      {
         path: '/users',
         name: 'users',
         component: User
-      }
+      },
     ]
   },
   {

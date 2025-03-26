@@ -2,8 +2,10 @@
 import axios from 'axios';
 // axios.defaults.baseURL = 'http://yuncheap.icu'; 
 axios.defaults.baseURL = 'http://zhanglin:8080/'; 
+const baseURL = 'http://zhanglin:8080';
 import Qs from 'qs';
 
+export default baseURL;
 export const post = (url, data) => {
   return axios({
     method: 'post',
@@ -12,6 +14,14 @@ export const post = (url, data) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
+  });
+};
+
+export const get = (url, data) => {
+  return axios({
+    method: 'get',
+    url: url,
+    params: data
   });
 };
 
@@ -30,7 +40,15 @@ function checkDatabaseConnection() {
           console.error('Error connecting to database:', error);
           alert('Error connecting to database. Please try again later.');
       });
+
+
 }
+
+
+
+
+
+
 
 // 调用发送请求的函数
 checkDatabaseConnection();

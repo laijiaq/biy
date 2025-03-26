@@ -84,13 +84,18 @@
                             // },
                             {
                                 index:'2-1',
-                                router:'/review',
+                                router:'/contentreview',
                                 title:'比赛审核'
                             },
                             {
                                 index:'2-2',
                                 router:'/reviewPhoto',
                                 title:'图片审核'
+                            },
+                            {
+                                index:'2-3',
+                                router:'/review',
+                                title:'参加比赛审核'
                             },
                         ],
                     },

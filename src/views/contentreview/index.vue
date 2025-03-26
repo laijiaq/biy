@@ -7,56 +7,74 @@
             </el-table-column>
             <el-table-column align="center" prop="description" label="比赛描述">
             </el-table-column>
-            <el-table-column align="center" prop="created_by_username" label="创建者">
+            <el-table-column align="center" prop="created_by_username" label="比赛创建者">
             </el-table-column>
-            
+            <el-table-column align="center" prop="review_stu" label="当前审批状态">
+                <template slot-scope="scope">
+                    {{scope.row.review_stu == 'accepted' ? '已通过' : scope.row.review_stu == 'rejected' ? '未通过' : '未审批'}}
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="status" label="是否启用">
+                <template slot-scope="scope">
+                    {{scope.row.status == '1' ? '启用' : '禁用'}}
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="start_date" label="比赛开始时间"> </el-table-column>
+            <el-table-column align="center" prop="end_date" label="比赛结束时间"> </el-table-column>
             <el-table-column align="center" label="操作" width="250">
                 <template slot-scope="scope">
                     
                     <el-button size="mini" type="primary" @click="ConPage(scope.row)">审批</el-button>
-                    <!-- <el-button size="mini" type="primary" @click="upContent(scope.row)">修改</el-button> -->
+                    <el-button size="mini" type="primary" @click="upContent(scope.row)">修改</el-button>
+                    <el-button size="mini" type="danger" @click="delcompetion(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="审批" :visible.sync="centerDialogVisible" width="80%">
-            
-            <el-table :data="entryDate" border fit style="width: 100%; margin-top: 10px;">
-                <el-table-column prop="image.title" label="图片标题" align="center"></el-table-column>
-                <el-table-column prop="image.description" label="图片详情" align="center"></el-table-column>
-                <el-table-column prop="username" label="上传人" align="center"></el-table-column>
-                <el-table-column label="图片地址" align="center">
-                    <template slot-scope="scope">
-                        <img :src="` ${ url }${ scope.row.image.image_url }`" alt="" style="width: 100px; object-fit: contain;">
-                    </template>
-                </el-table-column>
-                <el-table-column prop="status" label="当前作品状态" align="center">
-                    <template slot-scope="scope">
-                        <el-tag :type="success" v-if="scope.row.status == 'submitted'">审核中</el-tag>
-                        <el-tag :type="scope.row.status == 'approved' ? 'success' : 'danger'" v-if="scope.row.status == 'approved'">审核通过</el-tag>
-                        <el-tag :type="scope.row.status == 'approved' ? 'success' : 'danger'" v-if="scope.row.status == 'rejected'">审核不通过</el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column align="center" label="操作" width="250">
-                    <template slot-scope="scope">
-                        
-                        <el-button size="mini" type="primary" @click="agree(scope.row)">通过</el-button>
-                        <el-button size="mini" type="danger" @click="reject(scope.row)">不通过</el-button>
-                        <!-- <el-button size="mini" type="primary" @click="ConPage(scope.row)">审批</el-button> -->
-                        <!-- <el-button size="mini" type="primary" @click="upContent(scope.row)">修改</el-button> -->
-                    </template>
-            </el-table-column>
-            </el-table>
+        <el-dialog title="审批" :visible.sync="centerDialogVisible" width="30%">
+            <el-form  label-width="80px">
+                <el-form-item label="审批意见">
+                    <el-button size="mini" @click="agree(review_date)">同意</el-button>
+                    <el-button size="mini" type="danger" @click="reject(review_date)">不同意</el-button>
+                </el-form-item>
+
+            </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="centerDialogVisible = false;review_date = ''">取 消</el-button>
                 <!-- <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button> -->
             </span>
         </el-dialog>
-        
+        <el-dialog title="比赛内容" :visible.sync="upDialogVisible" width="60%">
+            <el-form ref="form" :model="upIndustry" label-width="80px" style="max-width: 1200px;">
+                <el-form-item label="比赛标题">
+                    <el-input v-model="upIndustry.title"></el-input>
+                </el-form-item>
+                <el-form-item label="比赛时间">
+                    <el-date-picker
+                        v-model="times"
+                        type="datetimerange"
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期">
+                    </el-date-picker>
+                </el-form-item>
+                
+                <el-form-item label="是否启用">
+                    <el-switch v-model="upIndustry.status"></el-switch>
+                </el-form-item>
+                <el-form-item label="比赛描述">
+                    <el-input type="textarea" v-model="upIndustry.description"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <!-- <el-button type="primary" @click="onSubmit">立即创建</el-button> -->
+                     <el-button type="primary" @click="updatecontent(upIndustry)">修改</el-button>
+                    <el-button @click="Calcontent()">取消</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 <script>
-import { updatereviewcontent , updatecontent , selectconpetion   , selectentry , updateentry } from "../../assets/api/competion.js";
-import  baseURL  from '../../assets/api/index.js'
+import { updatereviewcontent , updatecontent , selectconpetion  , delcompetion  } from "../../assets/api/competion.js";
 export default {
     data() {
         return {
@@ -69,7 +87,6 @@ export default {
             },
             comData: [],
             review_date:'',
-            url: baseURL,
             upIndustry: {
                 title: '', // 比赛名称
                 start_date:'', // 比赛开始时间
@@ -80,8 +97,7 @@ export default {
                 userid: JSON.parse(localStorage.getItem("user")).id, // 创建人
                 username: JSON.parse(localStorage.getItem("user")).username,    // 创建人
             },
-            times: '',
-            entryDate:[]
+            times: ''
             
         }
     },
@@ -93,9 +109,9 @@ export default {
     methods: {
         agree(scope){
             
-            updateentry({
-                entry_id: scope.entry_id,
-                status: 'approved'
+            updatereviewcontent({
+                competition_id: scope.competition_id,
+                review_stu: 'accepted'
             }).then(res => {
                 if(res.data.status == '1'){
                     this.$message.success({
@@ -120,14 +136,48 @@ export default {
             selectconpetion().then(res =>{
                 if(res.data.status == '1'){
                     this.comData = res.data.data
+                    console.log('res',res.data.data);
                     
                 }
             })
         },
+        delcompetion(row){
+            this.$confirm('确定删除当前比赛信息?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                delcompetion({
+                    competition_id:row.competition_id
+                }).then(res=>{
+                    if(res.data.status == 1){
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success',
+                            duration:'1000'
+                        });
+                        const index = this.comData.findIndex(item => item.competition_id === row.competition_id);
+                        if (index !== -1) {
+                            this.comData.splice(index, 1);
+                        }
+                    }
+                }).catch(error => {
+                    console.error("删除失败", error);
+                    this.$message({
+                        message: '删除失败',
+                        type: 'error',
+                        duration: 1000
+                    });
+                });
+            }).catch(() => {
+            });
+            
+
+        },
         reject(scope){
-            updateentry({
-                entry_id: scope.entry_id,
-                status: 'rejected'
+            updatereviewcontent({
+                competition_id: scope.competition_id,
+                review_stu: 'rejected'
             }).then(res => {
                 if(res.data.status == '1'){
                     this.$message.success({
@@ -139,31 +189,13 @@ export default {
                     this.centerDialogVisible = false
                 }else{
                     this.$message.error({})
-                } 
+                }
             })
         },
         ConPage(row){
             this.centerDialogVisible = true
             
             this.review_date = row
-            selectentry({
-                competition_id:row.competition_id
-            }).then(res =>{
-                if(res.data.status == 1){
-                    // this.content = res.data.data
-                    this.entryDate = res.data.entries
-                    console.log('baseURL',this.url + this.entryDate[0].image.image_url);
-                    
-                    // console.log('获取成功',res.data.entries);
-                    
-                }else{
-                    this.$message.error({
-                        message: '获取失败',
-                        type: 'error',
-                        duration: 1000
-                    })
-                }
-            })
         },
         upContent(scope){
             this.upDialogVisible = true
@@ -236,5 +268,5 @@ export default {
 
 }
 </script>
-<style >
+<style>
 </style>

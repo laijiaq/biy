@@ -11,10 +11,11 @@
             </el-table-column>
             <el-table-column align="center" prop="status" label="当前状态">
             </el-table-column>
-            <el-table-column align="center" label="操作" width="200">
+            <el-table-column align="center" label="操作" width="250">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="agree(scope.row)">同意</el-button>
                     <el-button size="mini" type="danger" @click="reject(scope.row)">不同意</el-button>
+                    <el-button size="mini" type="danger" @click="delcompetion(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -22,7 +23,7 @@
     </div>
 </template>
 <script>
-import { updateparticipants , selectparticipants , selectconpetion , selectuser } from "../../assets/api/competion.js";
+import { updateparticipants , selectparticipants , selectconpetion , selectuser , selectcontentpartic , delparticipants } from "../../assets/api/competion.js";
 export default {
     data() {
         return {
@@ -38,6 +39,11 @@ export default {
             //     name: ''
             // }
         }
+    },
+
+    created() {
+        this.getComData()
+        // this.getpage()
     },
     methods: {
         agree(scope){
@@ -63,6 +69,39 @@ export default {
             }).catch(err => {
             })
         },
+        delcompetion(row){
+            this.$confirm('确定删除当前报名信息?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                delparticipants({
+                    participant_id:row.participant_id
+                }).then(res=>{
+                    if(res.data.status == 1){
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success',
+                            duration:'1000'
+                        });
+                        const index = this.comData.findIndex(item => item.participant_id === row.participant_id);
+                        if (index !== -1) {
+                            this.comData.splice(index, 1);
+                        }
+                    }
+                }).catch(error => {
+                    console.error("删除失败", error);
+                    this.$message({
+                        message: '删除失败',
+                        type: 'error',
+                        duration: 1000
+                    });
+                });
+            }).catch(() => {
+            });
+            
+
+        },
         reject(scope){
             updateparticipants({
                 id: scope.participant_id,
@@ -85,7 +124,8 @@ export default {
                 const that = this;
                 if (res.data.status == '1') {
                     const data = res.data.data;
-
+                    console.log('se',res.data.data);
+                    
                     // 使用 Promise.all 来处理多个异步请求
                     const promises = data.map(item => {
                         return Promise.all([
@@ -119,12 +159,18 @@ export default {
                     });
                 }
             });
+            
+        },
+        getpage(){
+            selectcontentpartic().then(res => {
+                if (res.data.status == '1') {
+                    console.log('获取成功',res.data.data);
+                    
+                }
+            });
         }
 
-    },
 
-    created() {
-        this.getComData()
     }
 
 }
