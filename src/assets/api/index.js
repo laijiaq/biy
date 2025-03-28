@@ -1,8 +1,8 @@
 
 import axios from 'axios';
 // axios.defaults.baseURL = 'http://yuncheap.icu'; 
-axios.defaults.baseURL = 'http://zhanglin:8080/'; 
-const baseURL = 'http://zhanglin:8080';
+axios.defaults.baseURL = 'http://zhanglin:86/'; 
+const baseURL = 'http://zhanglin:86';
 import Qs from 'qs';
 
 export default baseURL;

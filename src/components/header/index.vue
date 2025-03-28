@@ -47,9 +47,9 @@
             },
             target_main(){
                 const user = JSON.parse(localStorage.getItem('user'))
-                user.activeIndex = '2-1'
+                user.activeIndex = '1'
                 localStorage.setItem('user', JSON.stringify(user))
-                window.location.href = "http://192.168.1.6:8081/";
+                window.location.href = "http://192.168.2.13:8081/";
 
             }
         }
